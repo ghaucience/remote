@@ -1,5 +1,5 @@
-#ARCH			:= mt7620a
-ARCH			:= x86
+ARCH			:= mt7620a
+#ARCH			:= x86
 
 #####################################################
 ifeq ($(ARCH),mt7620a)
@@ -12,7 +12,7 @@ endif
 
 ifeq ($(ARCH),mt7620a)
 SELF_CFLAGS		+= -I./inc -I./product/zwave/inc -I./inc/ayla -I./inc/platform
-SELF_LDFLAGS	+= -L./lib -ljansson
+SELF_LDFLAGS	+= -L./lib
 OPENWRT_DIR	:= /opt/au/openwrt_7620
 STAGING_DIR		:= $(OPENWRT_DIR)/staging_dir
 CROSS_DIR		:= $(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin
@@ -20,7 +20,7 @@ endif
 
 ifeq ($(ARCH),x86) 
 SELF_CFLAGS		+= -I./inc -I./product/zwave/inc -I./inc/ayla
-SELF_LDFLAGS	+= -L./lib -ljansson
+SELF_LDFLAGS	+= -L./lib
 OPENWRT_DIR	:= 
 STAGING_DIR		:= 
 CROSS_DIR		:= 

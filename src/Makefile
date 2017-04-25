@@ -1,6 +1,6 @@
 include ./make/arch.mk
 
-targets	 += main
+targets	 += remote
 
 objs							:= ./main.o
 objs							+= ./src/ayla/log.o
@@ -20,7 +20,7 @@ midobjs += $(objs)					$(objs:%.o=%.d)
 
 include ./make/rules.mk
 
-$(eval $(call LinkApp, main, $(objs)))
+$(eval $(call LinkApp, remote, $(objs)))
 
 scp :
 	scp -P 22 ./main root@192.168.10.101:/tmp
