@@ -401,7 +401,11 @@ int handleoutput( int fd ) {
 	} else if (strstr(buffer, "(yes/no)?") != NULL) {
 		printf("write yes\n");
 		write_yes(fd);
-	} 
+	} else if (strstr(buffer, "(y/n)") != NULL) {
+		printf("write yes\n");
+		write_yes(fd);
+	}
+
 #endif
 
 	return ret;
