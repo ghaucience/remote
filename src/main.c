@@ -16,10 +16,10 @@
 #include <termios.h>
 
 
-#include "common.h"
-#include "log.h"
-#include "timer.h"
-#include "file_event.h"
+//#include "common.h"
+//#include "log.h"
+//#include "timer.h"
+//#include "file_event.h"
 
 #define PACKAGE_NAME          "remote"
 #define PACKAGE_STRING				"remote"
@@ -27,7 +27,7 @@
 ///////////////////////////////////////////////////////////////
 int create_shell_agent(int argc, char *argv[]);
 int main(int argc, char *argv[]) {
-	log_init(argv[0], LOG_OPT_DEBUG | LOG_OPT_CONSOLE_OUT | LOG_OPT_TIMESTAMPS | LOG_OPT_FUNC_NAMES);
+	//log_init(argv[0], LOG_OPT_DEBUG | LOG_OPT_CONSOLE_OUT | LOG_OPT_TIMESTAMPS | LOG_OPT_FUNC_NAMES);
 
 	create_shell_agent(argc, argv);
 

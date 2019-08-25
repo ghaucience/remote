@@ -3,16 +3,16 @@ include ./make/arch.mk
 targets	 += remote
 
 objs							:= ./main.o
-objs							+= ./src/ayla/log.o
-objs							+= ./src/ayla/lookup_by_name.o
-objs							+= ./src/ayla/timer.o
-objs							+= ./src/ayla/time_utils.o
-objs							+= ./src/ayla/assert.o
-objs							+= ./src/ayla/file_event.o
-objs							+= ./src/lockqueue.o
-objs							+= ./src/mutex.o
-objs							+= ./src/cond.o
-objs							+= ./src/list.o
+#objs							+= ./src/ayla/log.o
+#objs							+= ./src/ayla/lookup_by_name.o
+#objs							+= ./src/ayla/timer.o
+#objs							+= ./src/ayla/time_utils.o
+#objs							+= ./src/ayla/assert.o
+#objs							+= ./src/ayla/file_event.o
+#objs							+= ./src/lockqueue.o
+#objs							+= ./src/mutex.o
+#objs							+= ./src/cond.o
+#objs							+= ./src/list.o
 
 
 midobjs	:= 

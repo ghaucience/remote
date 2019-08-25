@@ -1,5 +1,6 @@
-ARCH			:= mt7620a
+#ARCH			:= mt7620a
 #ARCH			:= x86
+ARCH								:= ARMIMX28
 
 #####################################################
 ifeq ($(ARCH),mt7620a)
@@ -26,6 +27,19 @@ STAGING_DIR		:=
 CROSS_DIR		:= 
 endif
 
+ifeq ($(ARCH),ARMIMX28)
+CROSSTOOLDIR 				:= /home/au/all/opt/gcc-4.4.4-glibc-2.11.1-multilib-1.0/arm-fsl-linux-gnueabi
+CROSS   						:= arm-fsl-linux-gnueabi-
+export  STAGING_DIR	:= $(CROSSTOOLDIR)/
+export  PATH				:= $(PATH):$(STAGING_DIR)/bin
+
+#CROSS_CFLAGS				:= -I$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/include
+CROSS_CFLAGS				+= -I$(CROSSTOOLDIR)/include
+#CROSS_LDFLAGS			:= -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/lib
+CROSS_LDFLAGS			+= -L$(CROSSTOOLDIR)/lib/ 
+endif
+
+
 
 SEDONA_HOME	:= /mnt/hgfs/sedona
 SEDONABIN_DIR	:= $(SEDONA_HOME)/bin
@@ -37,7 +51,7 @@ export CLASSPATH:=.:$(JAVA_HOME)/lib/tools.jar:$(JAVA_HOME)/lib/dt.jar
 
 # tools
 CC			:= $(CROSS)gcc
-CFLAGS 		:= -Wall -g -O2
+CFLAGS 		:= -Wall -g -O2 -I$./inc -I$./inc/ayla
 CFLAGS		+= $(SELF_CFLAGS)
 
 CPP			:= $(CROSS)g++
@@ -45,7 +59,8 @@ CPPFLAGS		:= $(CFLAGS)
 CPPFLAGS		+= -std=c++0x
 
 LD			:= $(CROSS)g++
-LDFLAGS		:= -lm -lrt -ldl -lpthread
+#LDFLAGS		:= -lm -lrt -ldl -lpthread
+LDFLAGS		:= 
 LDFLAGS		+= $(SELF_LDFLAGS)
 LDFLAGS		+= -lstdc++
 
