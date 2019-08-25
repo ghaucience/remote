@@ -13,7 +13,7 @@ endif
 ifeq ($(ARCH),mt7620a)
 SELF_CFLAGS		+= -I./inc -I./product/zwave/inc -I./inc/ayla -I./inc/platform
 SELF_LDFLAGS	+= -L./lib
-OPENWRT_DIR	:= /opt/au/openwrt_7620
+OPENWRT_DIR	:= /home/au/all/gwork/openwrt/
 STAGING_DIR		:= $(OPENWRT_DIR)/staging_dir
 CROSS_DIR		:= $(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin
 endif

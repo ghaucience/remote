@@ -369,6 +369,7 @@ int handleoutput( int fd ) {
 	buffer[numread] = 0;
 	printf("buffer is %s\n", buffer);
 
+
 #if 0
 	state1=match( compare1, buffer, numread, state1 );
 	// Are we at a password prompt?
@@ -402,8 +403,9 @@ int handleoutput( int fd ) {
 		printf("write yes\n");
 		write_yes(fd);
 	} else if (strstr(buffer, "(y/n)") != NULL) {
-		printf("write yes\n");
-		write_yes(fd);
+		printf("write y\n");
+		write_y(fd);
+	} else {
 	}
 
 #endif
@@ -498,6 +500,31 @@ void write_yes(int fd) {
 			break;
 	}
 }
+
+void write_y(int fd) {
+	switch( args.pwtype ) {
+		case PWT_STDIN:
+			write_yes_fd( STDIN_FILENO, fd );
+			break;
+		case PWT_FD:
+			write_yes_fd( args.pwsrc.fd, fd );
+			break;
+		case PWT_FILE:
+			{
+				int srcfd=open( args.pwsrc.filename, O_RDONLY );
+				if( srcfd!=-1 ) {
+					write_yes_fd( srcfd, fd );
+					close( srcfd );
+				}
+			}
+			break;
+		case PWT_PASS:
+			write( fd, "y", strlen( "y" ) );
+			write( fd, "\n", 1 );
+			break;
+	}
+}
+
 
 void write_yes_fd(int srcfd, int dstfd) {
 	int done=0;

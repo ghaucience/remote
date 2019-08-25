@@ -23,7 +23,7 @@ include ./make/rules.mk
 $(eval $(call LinkApp, remote, $(objs)))
 
 scp :
-	scp -P 22 ./main root@192.168.10.101:/tmp
+	scp -P 20022 ./remote root@192.168.10.230:/tmp
 
 startvc :
 	(cd ./utils/VirtualCom;\
