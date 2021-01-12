@@ -1,8 +1,40 @@
 #ARCH			:= mt7620a
 #ARCH			:= x86
-ARCH								:= ARMIMX28
+#ARCH								:= ARMIMX28
+ARCH			:= LS1020
 
 #####################################################
+ifeq ($(ARCH),MT7620)
+#CROSSTOOLDIR 			:= /home/ztp/work/MTK_APSoC_SDK/blebeacon-new/OpenWrt-SDK-ramips-mt7688_gcc-4.8-linaro_uClibc-0.9.33.2.Linux-x86_64
+CROSSTOOLDIR 				:= /home/au/all/gwork/openwrt
+CROSS   						:= mipsel-openwrt-linux-
+export  STAGING_DIR	:= $(CROSSTOOLDIR)/staging_dir
+export  PATH				:= $(PATH):$(STAGING_DIR)/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/bin
+
+CROSS_CFLAGS				:= -I$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/include
+CROSS_CFLAGS				+= -I$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/include
+CROSS_LDFLAGS				:= -L$(CROSSTOOLDIR)/staging_dir/toolchain-mipsel_24kec+dsp_gcc-4.8-linaro_uClibc-0.9.33.2/usr/lib
+CROSS_LDFLAGS				+= -L$(CROSSTOOLDIR)/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/lib/ 
+endif
+
+ifeq ($(ARCH),LS1020)
+CROSS   := arm-openwrt-linux-
+CROSSTOOLDIR 				:=/home/au/openwrt
+export  STAGING_DIR := $(CROSSTOOLDIR)/staging_dir
+
+#toolchain-arm_cortex-a7+neon_gcc-4.8-linaro_uClibc-0.9.33.2_eabi/bin/
+#target-arm_cortex-a7+neon_uClibc-0.9.33.2_eabi
+
+export  PATH         := $(PATH):$(STAGING_DIR)/toolchain-arm_cortex-a7+neon_gcc-4.8-linaro_uClibc-0.9.33.2_eabi/bin
+CROSS_CFLAGS         := -I$(CROSSTOOLDIR)/staging_dir/toolchain-arm_cortex-a7+neon_gcc-4.8-linaro_uClibc-0.9.33.2_eabi/usr/include
+CROSS_CFLAGS         += -I$(CROSSTOOLDIR)/staging_dir/target-arm_cortex-a7+neon_uClibc-0.9.33.2_eabi/usr/include
+CROSS_LDFLAGS       := -L$(CROSSTOOLDIR)/staging_dir/toolchain-arm_cortex-a7+neon_gcc-4.8-linaro_uClibc-0.9.33.2_eabi/usr/lib
+CROSS_LDFLAGS       += -L$(CROSSTOOLDIR)/staging_dir/target-arm_cortex-a7+neon_uClibc-0.9.33.2_eabi/usr/lib
+
+
+endif
+
+
 ifeq ($(ARCH),mt7620a)
 CROSS		:= mipsel-openwrt-linux-
 endif
